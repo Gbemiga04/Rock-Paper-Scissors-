@@ -26,9 +26,29 @@
     >
       Scissors
     </button>
+    <button
+      onclick="
+    score.Wins=0;
+    score.Ties=0;
+    score.Losses=0;
+    localStorage.removeItem('score')
+    "
+    >
+      Reset
+    </button>
     <script>
       let compPlay = "";
       let result = "";
+
+      let score = JSON.parse(localStorage.getItem("score"));
+
+      if (!score) {
+        score = {
+          Wins: 0,
+          Losses: 0,
+          Ties: 0,
+        };
+      }
 
       function pickcomputerMove() {
         const randomNumber = Math.random();
@@ -69,8 +89,17 @@
             result = "You win";
           }
         }
+        if (result == "You win") {
+          score.Wins += 1;
+        } else if (result == "You lose") {
+          score.Losses += 1;
+        } else if (result == "Tie") {
+          score.Ties += 1;
+        }
+        localStorage.setItem("score", JSON.stringify(score));
         alert(
-          `You picked ${playerMove}. Computer picked ${compPlay}. ${result}`
+          `You picked ${playerMove}. Computer picked ${compPlay}. ${result}
+Wins: ${score.Wins} Losses : ${score.Losses} Ties: ${score.Ties} `
         );
 
         Scissors;
