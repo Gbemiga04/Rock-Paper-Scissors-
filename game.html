@@ -2,33 +2,67 @@
 <html>
   <head>
     <title>Rock Paper Scissors!</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .game-title {
+        font-size: 30px;
+      }
+      .game-icons {
+        background-color: black;
+        border-color: white;
+        border-radius: 50%;
+        margin-right: 20px;
+        padding: 30px 30px 30px 30px;
+        border-width: 3px;
+        cursor: pointer;
+      }
+      .icons {
+        height: 50px;
+        width: 50px;
+      }
+      .score {
+        margin-top: 40px;
+      }
+      .reset-button {
+        padding: 10px 10px;
+        font-weight: bold;
+        font-size: 18px;
+      }
+    </style>
   </head>
   <body>
-    <p>Rock Paper Scissors</p>
+    <p class="game-title">Rock Paper Scissors</p>
     <button
       onclick="
     playGame('Rock')
     "
+      class="game-icons"
     >
-      Rock
+      <img src="rock-emoji.png" alt="" class="icons" />
     </button>
     <button
       onclick="
     playGame('Paper')
     "
+      class="game-icons"
     >
-      Paper
+      <img src="paper-emoji.png" alt="" class="icons" />
     </button>
     <button
       onclick="
     playGame('Scissors')
     "
+      class="game-icons"
     >
-      Scissors
+      <img src="scissors-emoji.png" alt="" class="icons" />
     </button>
     <p class="js-result"></p>
     <p class="js-play"></p>
-    <p class="js-score"></p>
+    <p class="js-score score"></p>
     <button
       onclick="         
       score = {
@@ -41,8 +75,9 @@
     document.querySelector('.js-result').innerHTML = '';
     document.querySelector('.js-play').innerHTML = '';
     "
+      class="reset-button"
     >
-      Reset
+      Reset Score
     </button>
     <script>
       let compPlay = "";
@@ -108,7 +143,9 @@
         document.querySelector(".js-result").innerHTML = result;
         document.querySelector(
           ".js-play"
-        ).innerHTML = `You ${playerMove} - ${compPlay} Computer`;
+        ).innerHTML = `      You <img src="${playerMove}-emoji.png" alt="" class="icons" />
+      <img src="${compPlay}-emoji.png" alt="" class="icons" />
+      Computer`;
         document.querySelector(
           ".js-score"
         ).innerHTML = `Wins: ${score.Wins} Losses : ${score.Losses} Ties: ${score.Ties}`;
